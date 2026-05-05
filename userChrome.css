@@ -152,8 +152,8 @@
     width: 100%;
   }
 
-  #tabbrowser-arrowscrollbox {
-    margin-inline-end: calc(var(--uc-hamburger-width) + var(--uc-toolbar-button-width) * 2) !important;
+  #tabbrowser-tabs {
+    max-width: calc(100% - var(--uc-window-buttons-width) - var(--uc-hamburger-width)) !important;
   }
 
   #navigator-toolbox:focus-within #nav-bar {
