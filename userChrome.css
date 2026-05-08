@@ -65,6 +65,57 @@
 
 
 /* ==========================================================================
+   COLOR THEME — Gruvbox Dark
+   Replaces the standalone ColorTheme.xpi. Only applies in dark mode.
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Frame & toolbar */
+    --lwt-accent-color: #282828 !important;
+    --toolbar-bgcolor: #282828 !important;
+    --toolbar-color: #FFFFFF !important;
+    --lwt-text-color: #FFFFFF !important;
+
+    /* Tabs */
+    --uc-highlight-colour: #504945;
+    --lwt-tab-line-color: #fabd2f !important;
+    --tab-selected-textcolor: #fabd2f !important;
+
+    /* Icons */
+    --lwt-toolbarbutton-icon-fill-attention: #fabd2f !important;
+
+    /* URL bar */
+    --toolbar-field-background-color: #1d2021 !important;
+    --toolbar-field-color: #FFFFFF !important;
+    --toolbar-field-focus-border-color: #fabd2f !important;
+    --toolbar-field-focus-background-color: #3c3836 !important;
+
+    /* Popups & panels */
+    --arrowpanel-background: #3c3836 !important;
+    --arrowpanel-color: #FFFFFF !important;
+    --arrowpanel-border-color: #282828 !important;
+    --panel-item-hover-bgcolor: #7c6f64 !important;
+
+    /* Sidebar */
+    --lwt-sidebar-background-color: #282828 !important;
+    --lwt-sidebar-text-color: #FFFFFF !important;
+    --lwt-sidebar-border-color: #3c3836 !important;
+    --sidebar-highlight-background-color: #7c6f64 !important;
+  }
+
+  #navigator-toolbox {
+    background: #282828 !important;
+  }
+
+  /* Selected tab text */
+  .tabbrowser-tab[selected] {
+    color: #fabd2f !important;
+  }
+}
+
+
+/* ==========================================================================
    LAYOUT
    ========================================================================== */
 
