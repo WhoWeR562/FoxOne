@@ -3,7 +3,6 @@
 ### 1. Download
 
 Download [`userChrome.css`](https://github.com/Firnschnee/FoxOne/blob/main/userChrome.css) and [`userContent.css`](https://github.com/Firnschnee/FoxOne/blob/main/userContent.css)
-No need for the ColorTheme.xpi anymore. 
 
 ### 2. Enable custom stylesheets
 
@@ -30,6 +29,6 @@ The theme applies on restart.
 
 ### Color Theme
 
-FoxOne includes a built-in Gruvbox inspired Dark color theme that activates automatically in dark mode. No separate extension needed.
+FoxOne now includes a built-in Gruvbox inspired Dark color theme that activates automatically in dark mode. No separate extension needed.
 
 If you use a different system theme or want light mode, the color theme section in `userChrome.css` only applies inside `@media (prefers-color-scheme: dark)` and won't interfere.
