@@ -114,9 +114,13 @@
     color: #fabd2f !important;
   }
 
-  /* URL bar result text — override dark system color on selected row */
+  /* URL bar results — Gruvbox-tinted selection highlight (full row) */
+  .urlbarView-row[selected] {
+    background: rgba(250, 189, 47, 0.15) !important;
+  }
   .urlbarView-row[selected] > .urlbarView-row-inner {
     color: #FFFFFF !important;
+    background: transparent !important;
   }
 }
 
@@ -296,8 +300,7 @@ sidebar-main,
   background: var(--toolbar-field-background-color) !important;
 }
 
-.urlbarView-row:hover > .urlbarView-row-inner,
-.urlbarView-row[selected] > .urlbarView-row-inner {
+.urlbarView-row:hover > .urlbarView-row-inner {
   background: var(--toolbar-field-focus-background-color) !important;
 }
 
