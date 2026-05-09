@@ -19,6 +19,6 @@ Want to see it in action? [Watch the animations!](https://github.com/Firnschnee/
 
 ---
  
-**[Installation](docs/installation.md) & [Customisation](https://github.com/Firnschnee/FoxOne/blob/main/docs/Customisation.md)** |
+**[Installation](docs/installation.md) & [Customisation](https://github.com/Firnschnee/FoxOne/blob/main/docs/customisation.md)** |
 Based on and inspired by Andreas Grafen's [Cascade](https://github.com/andreasgrafen/cascade) & biglavis' [LittleFox](https://github.com/biglavis/LittleFox) |
 License: [MIT](LICENSE)
