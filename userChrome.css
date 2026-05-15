@@ -40,6 +40,9 @@
   --show-tab-close-button: none;
   --show-tab-close-button-hover: -moz-inline-block;
 
+  /* Context menu: "Open Link in Split View" (none = hidden, -moz-box = visible) */
+  --uc-show-context-splitview: none;
+
   /* All-tabs button (none = hidden, -moz-box = visible) */
   --uc-show-all-tabs-button: none;
 
@@ -468,6 +471,9 @@ browser[type="content"],
 
 #pageActionButton { display: none !important; }
 #urlbar-go-button { display: none !important; }
+
+/* Context menu: hide "Open Link in Split View" (toggle in CONFIG) */
+#context-openlinkinsplitview { display: var(--uc-show-context-splitview) !important; }
 
 #identity-permission-box {
   max-width: 0 !important;
