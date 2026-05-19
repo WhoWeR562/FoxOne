@@ -253,7 +253,7 @@ sidebar-main,
     width: 100%;
   }
 
-  #tabbrowser-tabs {
+  #tabbrowser-tabs:not([orient="vertical"]) {
     max-width: calc(100% - var(--uc-hamburger-width) - var(--uc-toolbar-button-width) - var(--uc-drag-space) - var(--uc-newtab-width)) !important;
 	}
 
@@ -265,6 +265,24 @@ sidebar-main,
   }
   #navigator-toolbox:focus-within #titlebar {
     width: calc(100vw - var(--uc-urlbar-max-width) - 1px);
+  }
+}
+
+/* Vertical tabs — toolbar layout override.
+   Tabs live in the sidebar, so the toolbar only holds URL bar + buttons.
+   Uses :has() to detect vertical mode reliably in userChrome.css. */
+@media (min-width: 1000px) {
+  :root:has(#tabbrowser-tabs[orient="vertical"]) #nav-bar {
+    flex: 1 !important;
+    width: auto !important;
+  }
+
+  :root:has(#tabbrowser-tabs[orient="vertical"]) #titlebar {
+    width: auto !important;
+  }
+
+  :root:has(#tabbrowser-tabs[orient="vertical"]) #PanelUI-button {
+    position: static !important;
   }
 }
 
@@ -770,6 +788,16 @@ browser[type="content"],
   margin: 0px !important;
   border-radius: 0px !important;
 }
+
+/* vertical tabs — stretch to fill sidebar width */
+#tabbrowser-tabs[orient="vertical"] {
+  flex: 1 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab[fadein]:not([pinned]) {
+  max-width: none !important;
+}
+
 
 /* tab group labels */
 .tab-group-label-container > .tab-group-label {
