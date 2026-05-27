@@ -634,32 +634,6 @@ browser[type="content"],
    HIDDEN ELEMENTS
    ========================================================================== */
 
-/* Navigation buttons (back, forward, reload) — hidden by default, revealed on
-   hover/focus. URL bar gives up flex space for the buttons to slide in.
-   Controlled by --uc-autohide-nav-buttons in CONFIG. */
-:is(#back-button, #forward-button, #stop-reload-button) {
-  width: calc((1 - var(--uc-autohide-nav-buttons)) * (16px + 2 * var(--toolbarbutton-inner-padding))) !important;
-  padding-inline: calc((1 - var(--uc-autohide-nav-buttons)) * var(--toolbarbutton-inner-padding)) !important;
-  overflow: hidden !important;
-  opacity: calc(1 - var(--uc-autohide-nav-buttons)) !important;
-  transition: width 150ms ease-out, padding-inline 150ms ease-out, opacity 150ms ease-out !important;
-}
-
-#nav-bar:hover :is(#back-button, #forward-button, #stop-reload-button),
-#nav-bar:focus-within :is(#back-button, #forward-button, #stop-reload-button) {
-  width: calc(16px + 2 * var(--toolbarbutton-inner-padding)) !important;
-  padding-inline: var(--toolbarbutton-inner-padding) !important;
-  opacity: 1 !important;
-}
-
-/* Forward button stays hidden when disabled (no forward history) */
-#nav-bar:hover #forward-button[disabled],
-#nav-bar:focus-within #forward-button[disabled] {
-  width: calc((1 - var(--uc-autohide-nav-buttons)) * (16px + 2 * var(--toolbarbutton-inner-padding))) !important;
-  padding-inline: calc((1 - var(--uc-autohide-nav-buttons)) * var(--toolbarbutton-inner-padding)) !important;
-  opacity: calc(1 - var(--uc-autohide-nav-buttons)) !important;
-}
-
 #pageActionButton { display: none !important; }
 #urlbar-go-button { display: none !important; }
 
