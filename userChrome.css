@@ -133,8 +133,11 @@
     --uc-highlight-colour: var(--uc-color-base);
     --lwt-tab-line-color: var(--uc-color-accent) !important;
     --tab-selected-textcolor: var(--uc-color-accent) !important;
-    /* Kill native grey hover background – hover is a title-colour cue (issue #16) */
+    /* Kill native grey hover background – hover is a title-colour cue (issue #16).
+       Nova renamed the token to --tab-background-color-hover (word order
+       flipped, tab.tokens.css); override both names. */
     --tab-hover-background-color: transparent !important;
+    --tab-background-color-hover: transparent !important;
 
     /* Icons */
     --lwt-toolbarbutton-icon-fill-attention: var(--uc-color-accent) !important;
@@ -954,6 +957,10 @@ browser[type="content"],
 /* selected tab background + configurable highlight */
 .tabbrowser-tab[selected] .tab-background {
   background-color: var(--uc-active-tab-background) !important;
+  /* Nova paints a gradient "border" on the active tab via a layered
+     background-image (--tab-border-color-accent). FoxOne marks the active
+     tab with accent text + optional underline, so kill the gradient. */
+  background-image: none !important;
   box-shadow: inset 0 calc(var(--uc-active-tab-underline) * -2px) 0 0
     var(--tab-selected-textcolor, #fabd2f) !important;
   outline: none !important;
