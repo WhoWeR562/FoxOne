@@ -407,6 +407,17 @@ sidebar-main,
      it. Side effect: removing the 4px top margin realigns #PanelUI-button
      (position: fixed; top: 0), which the margin had pushed out of sync. */
   margin: 0 !important;
+  /* Nova rounds the toolbox via the chrome-block class
+     (--chrome-block-radius: 8px), rounding the toolbar top and the
+     bookmarks-bar bottom. Square it. */
+  border-radius: 0 !important;
+}
+
+/* Nova insets the web content with padding on #browser (the hbox wrapping
+   sidebar + content), leaving the page floating inside a frame. Remove it
+   so content sits flush with the window edge. */
+#browser {
+  padding: 0 !important;
 }
 
 #browser,
