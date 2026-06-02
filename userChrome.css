@@ -43,6 +43,9 @@
   --uc-active-tab-width: clamp(100px, 30vw, 250px);
   --uc-inactive-tab-width: clamp(100px, 20vw, 200px);
 
+  /* Inactive tab hover title color (issue #16) */
+  --uc-tab-hover-text: #fad729;
+
   /* Tab close button (none = hidden, -moz-inline-block = visible) */
   --show-tab-close-button: none;
   --show-tab-close-button-hover: -moz-inline-block;
@@ -130,6 +133,8 @@
     --uc-highlight-colour: var(--uc-color-base);
     --lwt-tab-line-color: var(--uc-color-accent) !important;
     --tab-selected-textcolor: var(--uc-color-accent) !important;
+    /* Kill native grey hover background – hover is a title-colour cue (issue #16) */
+    --tab-hover-background-color: transparent !important;
 
     /* Icons */
     --lwt-toolbarbutton-icon-fill-attention: var(--uc-color-accent) !important;
@@ -162,6 +167,11 @@
   /* Selected tab text */
   .tabbrowser-tab[selected] {
     color: var(--uc-color-accent) !important;
+  }
+
+  /* Inactive tab hover — dimmed-accent title instead of background (issue #16) */
+  .tabbrowser-tab:not([selected]):hover {
+    color: var(--uc-tab-hover-text) !important;
   }
 
   /* URL bar results — accent-tinted selection highlight (full row) */
