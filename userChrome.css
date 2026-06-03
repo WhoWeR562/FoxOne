@@ -128,6 +128,12 @@
     --toolbar-bgcolor: var(--uc-color-base) !important;
     --toolbar-color: var(--uc-color-text) !important;
     --lwt-text-color: var(--uc-color-text) !important;
+    /* Nova renamed the toolbar/toolbox colour tokens (--toolbar-bgcolor →
+       --toolbar-background-color, plus --toolbox-background-color for
+       chrome-blocks). FoxOne's old override misses them, so the bookmarks
+       bar and sidebar drifted to #2b2a33. Pin both to base. */
+    --toolbar-background-color: var(--uc-color-base) !important;
+    --toolbox-background-color: var(--uc-color-base) !important;
 
     /* Tabs */
     --uc-highlight-colour: var(--uc-color-base);
@@ -414,27 +420,37 @@ sidebar-main,
 
 #navigator-toolbox {
   border-bottom: 0 solid transparent !important;
-  /* Nova frames the toolbox with a 4px margin, letting the window
-     background show through as a border. FoxOne is edge-to-edge, so drop
-     it. Side effect: removing the 4px top margin realigns #PanelUI-button
-     (position: fixed; top: 0), which the margin had pushed out of sync. */
+}
+
+/* Nova frames every .chrome-block container (toolbox, sidebar, content) with
+   a 4px margin and an 8px radius (--chrome-block-radius), letting the window
+   background show through as a border and leaving panels floating inset.
+   #navigator-toolbox, #sidebar-main and others all carry class="chrome-block".
+   FoxOne is edge-to-edge, so flatten them all at the source. Side effects:
+   removes the toolbox 4px top margin (realigns #PanelUI-button, fixed top:0),
+   the sidebar side gaps, and the AI-panel height/strip mismatch. */
+.chrome-block {
   margin: 0 !important;
-  /* Nova rounds the toolbox via the chrome-block class
-     (--chrome-block-radius: 8px), rounding the toolbar top and the
-     bookmarks-bar bottom. Square it. */
   border-radius: 0 !important;
 }
 
-/* Nova insets the web content with padding on #browser (the hbox wrapping
-   sidebar + content), leaving the page floating inside a frame. Remove it
-   so content sits flush with the window edge. */
+/* Nova insets the web content on #browser (the flex hbox wrapping sidebar +
+   content): padding pushed the page off the window edge, and a 4px flex gap
+   (column + row) left strips between content and sidebar and a height/strip
+   mismatch on the AI panel. Remove both — the 2px #sidebar-splitter still
+   divides content from sidebar. */
 #browser {
   padding: 0 !important;
+  gap: 0 !important;
 }
 
 #browser,
 #appcontent,
-#tabbrowser-tabbox {
+#tabbrowser-tabbox,
+/* Nova draws the 1px chrome-content separator on .browserContainer too,
+   which the old list missed — it pushed the web content 1px below the AI
+   sidebar. */
+.browserContainer {
   border-top: none !important;
 }
 
