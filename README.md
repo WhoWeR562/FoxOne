@@ -1,7 +1,7 @@
 # FoxOne
 
-
 **A minimalist one-line Firefox theme.**
+> **Ready for Nova.** Tested and stable on current Firefox Beta with the upcoming redesign.
 
 <img width="1920" height="1080" alt="640_1x_shots_so" src="https://github.com/user-attachments/assets/f2d49a1e-f56c-4cf6-b1d2-40a36d1eb084" /><br>
 One-line layout. Clean URL bar. Hover-reveal icons. Gruvbox colors. Nothing else.
