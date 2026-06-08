@@ -284,80 +284,81 @@ sidebar-main,
 
 
 /* ==========================================================================
-   RESPONSIVE — One-line layout at >= 1000px
+   ONE-LINE LAYOUT – urlbar shares the toolbar row with the tabs.
+   Always on, at every window width. When urlbar + tabs no longer fit
+   comfortably, tabs shrink to their min-width and the strip scrolls
+   (native arrowscrollbox). Deliberately no width breakpoint: switching the
+   toolbox flex layout on resize leaves the urlbar's paint layer stale until
+   a repaint (Ctrl+L / tab switch), so the structure stays constant.
    ========================================================================== */
 
-@media (min-width: 1000px) {
-  #navigator-toolbox {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
+#navigator-toolbox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
 
-  /* Prevent notifications toolbar from becoming a 1px flex column —
-     force it to its own row so it collapses when empty. */
-  #notifications-toolbar {
-    width: 100% !important;
-    order: 99 !important;
-  }
+/* Prevent notifications toolbar from becoming a 1px flex column —
+   force it to its own row so it collapses when empty. */
+#notifications-toolbar {
+  width: 100% !important;
+  order: 99 !important;
+}
 
-  #nav-bar {
-    order: var(--uc-urlbar-position);
-    width: var(--uc-urlbar-min-width);
-    /* !important required: Firefox overrides our transition with
-       :root[sessionrestored][lwtheme] #nav-bar { transition-property:
-       background-color } when any lwtheme (Alpenglow, custom) is active. */
-    transition: width 0.25s ease !important;
-    &.browser-titlebar {
-      width: 100%;
-    }
-  }
-
-  #nav-bar #urlbar-container {
-    min-width: 0px !important;
-    width: auto !important;
-  }
-
-  #titlebar {
-    width: calc(100vw - var(--uc-urlbar-min-width) - 1px);
-    transition: width 0.25s ease !important;
-  }
-
-  #TabsToolbar {
+#nav-bar {
+  order: var(--uc-urlbar-position);
+  width: var(--uc-urlbar-min-width);
+  /* !important required: Firefox overrides our transition with
+     :root[sessionrestored][lwtheme] #nav-bar { transition-property:
+     background-color } when any lwtheme (Alpenglow, custom) is active. */
+  transition: width 0.25s ease !important;
+  &.browser-titlebar {
     width: 100%;
   }
+}
 
-  #tabbrowser-tabs:not([orient="vertical"]) {
-    max-width: calc(100% - var(--uc-hamburger-width) - var(--uc-toolbar-button-width) - var(--uc-drag-space) - var(--uc-newtab-width)) !important;
-	}
+#nav-bar #urlbar-container {
+  min-width: 0px !important;
+  width: auto !important;
+}
 
-  #navigator-toolbox:focus-within #nav-bar {
-    width: var(--uc-urlbar-max-width);
-    &.browser-titlebar {
-      width: 100%;
-    }
+#titlebar {
+  width: calc(100vw - var(--uc-urlbar-min-width) - 1px);
+  transition: width 0.25s ease !important;
+}
+
+#TabsToolbar {
+  width: 100%;
+}
+
+#tabbrowser-tabs:not([orient="vertical"]) {
+  max-width: calc(100% - var(--uc-hamburger-width) - var(--uc-toolbar-button-width) - var(--uc-drag-space) - var(--uc-newtab-width)) !important;
+}
+
+#navigator-toolbox:focus-within #nav-bar {
+  width: var(--uc-urlbar-max-width);
+  &.browser-titlebar {
+    width: 100%;
   }
-  #navigator-toolbox:focus-within #titlebar {
-    width: calc(100vw - var(--uc-urlbar-max-width) - 1px);
-  }
+}
+#navigator-toolbox:focus-within #titlebar {
+  width: calc(100vw - var(--uc-urlbar-max-width) - 1px);
 }
 
 /* Vertical tabs — toolbar layout override.
    Tabs live in the sidebar, so the toolbar only holds URL bar + buttons.
    Uses :has() to detect vertical mode reliably in userChrome.css. */
-@media (min-width: 1000px) {
-  :root:has(#tabbrowser-tabs[orient="vertical"]) #nav-bar {
-    flex: 1 !important;
-    width: auto !important;
-  }
+:root:has(#tabbrowser-tabs[orient="vertical"]) #nav-bar {
+  flex: 1 !important;
+  width: auto !important;
+}
 
-  :root:has(#tabbrowser-tabs[orient="vertical"]) #titlebar {
-    width: auto !important;
-  }
+:root:has(#tabbrowser-tabs[orient="vertical"]) #titlebar {
+  width: auto !important;
+}
 
-  :root:has(#tabbrowser-tabs[orient="vertical"]) #PanelUI-button {
-    position: static !important;
-  }
+:root:has(#tabbrowser-tabs[orient="vertical"]) #PanelUI-button {
+  position: static !important;
 }
 
 
@@ -380,26 +381,24 @@ sidebar-main,
   /* Position traffic lights at the left edge of the toolbar, vertically
      centred.  absolute (not fixed) so the buttons track the toolbox,
      not the viewport — gives the correct macOS inset. */
-  @media (min-width: 1000px) {
-    #navigator-toolbox {
-      position: relative !important;
-    }
+  #navigator-toolbox {
+    position: relative !important;
+  }
 
-    .titlebar-buttonbox-container {
-      position: absolute !important;
-      left: 0 !important;
-      top: 12px !important;
-      z-index: 1000 !important;
-      display: block !important;
-    }
+  .titlebar-buttonbox-container {
+    position: absolute !important;
+    left: 0 !important;
+    top: 12px !important;
+    z-index: 1000 !important;
+    display: block !important;
+  }
 
-    /* Reserve left-side space — box-sizing ensures padding stays within
-       the nav-bar's flex width instead of overflowing the layout.
-       Drops in fullscreen where macOS hides the traffic lights. */
-    :root:not([inFullscreen]) #nav-bar {
-      box-sizing: border-box !important;
-      padding-inline-start: var(--uc-traffic-light-width) !important;
-    }
+  /* Reserve left-side space — box-sizing ensures padding stays within
+     the nav-bar's flex width instead of overflowing the layout.
+     Drops in fullscreen where macOS hides the traffic lights. */
+  :root:not([inFullscreen]) #nav-bar {
+    box-sizing: border-box !important;
+    padding-inline-start: var(--uc-traffic-light-width) !important;
   }
 }
 
@@ -929,21 +928,16 @@ browser[type="content"],
 
 /* ==========================================================================
    HAMBURGER MENU — fixed position next to Windows control buttons.
-   Only applies in one-line layout (>= 1000px). Below that, the buttons
-   fall back to their natural position in the nav-bar so they don't
-   overlap the tab strip in the two-row layout.
    ========================================================================== */
 
-@media (min-width: 1000px) {
-  #PanelUI-button {
-    position: fixed !important;
-    right: var(--uc-window-buttons-width) !important;
-    top: 0 !important;
-    height: 44px !important;
-    z-index: 1000 !important;
-    display: flex !important;
-    align-items: center !important;
-  }
+#PanelUI-button {
+  position: fixed !important;
+  right: var(--uc-window-buttons-width) !important;
+  top: 0 !important;
+  height: 44px !important;
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 /* ==========================================================================
@@ -954,14 +948,8 @@ browser[type="content"],
    ========================================================================== */
 
 #TabsToolbar-customization-target > toolbaritem {
-  margin-inline-start: var(--uc-drag-space) !important;
-}
-
-@media (min-width: 1000px) {
-  #TabsToolbar-customization-target > toolbaritem {
-    margin-inline-start: auto !important;
-    margin-inline-end: var(--uc-hamburger-width) !important;
-  }
+  margin-inline-start: auto !important;
+  margin-inline-end: var(--uc-hamburger-width) !important;
 }
 
 
