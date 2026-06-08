@@ -42,6 +42,9 @@
   /* Dynamic tab widths */
   --uc-active-tab-width: clamp(100px, 30vw, 250px);
   --uc-inactive-tab-width: clamp(100px, 20vw, 200px);
+  /* Tab min width (opt-in): 76px = Firefox default (browser.tabs.tabMinWidth).
+     Lower it (e.g. 36px) to allow narrower tabs / fit more before overflow scroll */
+  --uc-tab-min-width: 76px;
 
   /* Inactive tab hover title color (issue #16) */
   --uc-tab-hover-text: #ffda85;
@@ -104,8 +107,11 @@
   /* Tab loading progress bar (1 = show, 0 = hide) */
   --uc-show-loading-progress: 0;
 
-  /* Navigation buttons — auto-hide with hover reveal (1 = hide, 0 = always show) */
+  /* Navigation buttons — auto-hide with hover reveal (0 = always show, 1 = reveal with hover and focus, 2 = reveal with hover) */
   --uc-autohide-nav-buttons: 0;
+
+  /* Navigation buttons — remove back/forward/reload for mouse button and shortcut users (1 = hide, 0 = show) */
+  --uc-hide-nav-buttons: 0;
 
   /* Active tab highlight (combine or use individually)
    * Background: set a hex color to enable (e.g. #3c3836), transparent = off
@@ -737,6 +743,76 @@ browser[type="content"],
    HIDDEN ELEMENTS
    ========================================================================== */
 
+/* Permanent hide — takes precedence over autohide */
+@container style(--uc-hide-nav-buttons: 1) {
+  #back-button,
+  #forward-button,
+  #reload-button,
+  #stop-reload-button {
+    display: none !important;
+  }
+}
+
+/* Navigation buttons — auto-hide with hover reveal */
+/* Mode 1 and 2 apply hidden state */
+@container style(--uc-autohide-nav-buttons: 1), style(--uc-autohide-nav-buttons: 2) {
+  #back-button,
+  #forward-button,
+  #reload-button,
+  #stop-reload-button {
+    opacity: 0 !important;
+    max-width: 0 !important;
+    min-width: 0 !important;
+    width: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    transition: all 0.2s ease !important;
+  }
+  /* Hover reveal applies to both modes — revert restores native button widths */
+  #nav-bar:hover :is(
+    #back-button,
+    #forward-button,
+    #reload-button,
+    #stop-reload-button
+  ) {
+    opacity: 1 !important;
+    width: revert !important;
+    min-width: revert !important;
+    max-width: 60px !important;
+    padding-inline: revert !important;
+  }
+  /* Back button has extra native leading padding (8px left vs 2px); revert misses it */
+  #nav-bar:hover #back-button {
+    padding-inline-start: 8px !important;
+  }
+  /* Disabled back/forward stay visible but dimmed, like native */
+  #nav-bar:hover :is(#back-button, #forward-button)[disabled] {
+    opacity: 0.4 !important;
+  }
+}
+
+/* Mode 1 also reveals on focus */
+@container style(--uc-autohide-nav-buttons: 1) {
+  #nav-bar:focus-within :is(
+    #back-button,
+    #forward-button,
+    #reload-button,
+    #stop-reload-button
+  ) {
+    opacity: 1 !important;
+    width: revert !important;
+    min-width: revert !important;
+    max-width: 60px !important;
+    padding-inline: revert !important;
+  }
+  #nav-bar:focus-within #back-button {
+    padding-inline-start: 8px !important;
+  }
+  #nav-bar:focus-within :is(#back-button, #forward-button)[disabled] {
+    opacity: 0.4 !important;
+  }
+}
+
 #pageActionButton { display: none !important; }
 #urlbar-go-button { display: none !important; }
 
@@ -927,6 +1003,9 @@ browser[type="content"],
 }
 .tabbrowser-tab[fadein]:not([selected]):not([pinned]):not(tab-group[collapsed] .tabbrowser-tab) {
   max-width: var(--uc-inactive-tab-width) !important;
+}
+.tabbrowser-tab[fadein]:not([pinned]):not(tab-group[collapsed] .tabbrowser-tab) {
+  min-width: var(--uc-tab-min-width) !important;
 }
 
 /* active pinned tab — bottom glow indicator (mirrors container-line style) */
