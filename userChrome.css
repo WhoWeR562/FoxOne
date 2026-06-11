@@ -896,7 +896,7 @@ browser[type="content"],
               margin-inline 0.2s ease, padding-inline 0.2s ease !important;
 }
 
-#nav-bar:hover #identity-permission-box,
+#urlbar:hover #identity-permission-box,
 #urlbar[focused="true"] #identity-permission-box {
   max-width: none !important;
   opacity: 1 !important;
@@ -933,14 +933,14 @@ browser[type="content"],
               padding 0.2s ease, margin 0.2s ease !important;
 }
 
-#nav-bar:hover #userContext-indicator,
+#urlbar:hover #userContext-indicator,
 #urlbar[focused="true"] #userContext-indicator {
   max-width: 200px !important;
   opacity: 1 !important;
   margin-inline: 2px !important;
 }
 
-#nav-bar:hover #userContext-label,
+#urlbar:hover #userContext-label,
 #urlbar[focused="true"] #userContext-label {
   max-width: 200px !important;
   opacity: 1 !important;
@@ -963,11 +963,11 @@ browser[type="content"],
               padding 0.2s ease, margin 0.2s ease !important;
 }
 
-#nav-bar:hover #reader-mode-button,
-#nav-bar:hover #taskbar-tabs-button,
-#nav-bar:hover #translations-button,
-#nav-bar:hover #pageAction-urlbar-_testpilot-containers,
-#nav-bar:hover #pageAction-urlbar-_e26226b8-5263-4b42-9789-504fde4443b3_,
+#urlbar:hover #reader-mode-button,
+#urlbar:hover #taskbar-tabs-button,
+#urlbar:hover #translations-button,
+#urlbar:hover #pageAction-urlbar-_testpilot-containers,
+#urlbar:hover #pageAction-urlbar-_e26226b8-5263-4b42-9789-504fde4443b3_,
 #urlbar[focused="true"] #reader-mode-button,
 #urlbar[focused="true"] #taskbar-tabs-button,
 #urlbar[focused="true"] #translations-button,
