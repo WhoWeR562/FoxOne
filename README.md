@@ -12,11 +12,13 @@ Want to see it in action? [Watch the animations!](https://github.com/Firnschnee/
 
 </div>
 
-Supported configuration: **Firefox 152+ with `browser.nova.enabled`**. From 3.0 on, that is the only setup tested and maintained.
+Supported configuration: **Firefox 152+ with `browser.nova.enabled`**. 
+From 3.0 on, that is the only setup tested and maintained.
 
-Running classic (pre-Nova) Firefox? 
-The stylesheet is dual-written and should still work, but it is no longer tested there. 
-For a fully-tested classic build, pin the `2.3` as an earlier base. 
+> Running classic (pre-Nova) Firefox?
+> 
+> The stylesheet is dual-written and should still work, but it is no longer tested there. 
+> For a fully-tested classic build, pin the `2.3` as an earlier base. 
 
 ---
  
