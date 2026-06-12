@@ -8,10 +8,6 @@ One-line layout. Clean URL bar. Hover-reveal icons. Gruvbox colors. Nothing else
 
 Want to see it in action? [Watch the animations!](https://github.com/Firnschnee/FoxOne/blob/main/docs/action.md)
 
-<br>
-
-> **Running classic (pre-Nova) Firefox? [Read here](docs/installation.md)**
-
 
 ---
  
