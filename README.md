@@ -8,6 +8,9 @@ One-line layout. Clean URL bar. Hover-reveal icons. Gruvbox colors. Nothing else
 
 Want to see it in action? [Watch the animations!](https://github.com/Firnschnee/FoxOne/blob/main/docs/action.md)
 
+<br>
+
+**Dynamic toolbar support.** Two extension icons of your choice, pinned by the hamburger, revealed on hover.
 
 ---
  
