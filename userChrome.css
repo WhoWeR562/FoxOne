@@ -228,7 +228,6 @@
     --toolbox-background-color: var(--uc-color-base) !important;
 
     /* URL bar */
-    --uc-highlight-colour: var(--uc-color-base);
     --toolbar-field-background-color: var(--uc-urlbar-background) !important;
     --toolbar-field-color: var(--uc-color-text) !important;
     --toolbar-field-focus-color: var(--uc-color-text) !important;
@@ -315,7 +314,6 @@
   --toolbar-background-color: var(--lwt-accent-color) !important;
   --toolbox-background-color: var(--lwt-accent-color) !important;
   --toolbar-field-background-color: var(--lwt-accent-color) !important;
-  --uc-highlight-colour: var(--lwt-accent-color);
 }
 
 /* Nova paints the URL field fill on .urlbar-input-container (the legacy
@@ -550,8 +548,11 @@ sidebar-main,
    NAV BAR
    ========================================================================== */
 
+/* Toolbox fill is the frame tone (base), NOT the URL-field colour. Feeding
+   --toolbar-field-background-color in here leaked --uc-urlbar-background onto the
+   whole top panel (issue #28); the field itself is painted at #urlbar below. */
 :root:not([lwtheme]) #navigator-toolbox {
-  background: var(--toolbar-field-background-color) !important;
+  background: var(--uc-color-base) !important;
 }
 
 /* kill toolbar–content separator (covers all known Firefox versions) */
@@ -639,7 +640,9 @@ sidebar-main,
 #urlbar[focused="true"] > .urlbar-background,
 #urlbar:not([open]) > #urlbar-background,
 #urlbar:not([open]) > .urlbar-background {
-  background: var(--uc-highlight-colour) !important;
+  /* The field tone (issue #28): --uc-urlbar-background normally, --lwt-accent-color
+     under a dynamic theme, both resolved via --toolbar-field-background-color. */
+  background: var(--toolbar-field-background-color) !important;
 }
 
 #urlbar[open] > #urlbar-background,
