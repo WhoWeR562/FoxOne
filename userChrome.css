@@ -29,9 +29,11 @@
   /* Personal Toolbar position (0 = top, 4 = bottom) */
   --uc-toolbar-position: 4;
 
-  /* URL Bar width (min applied normally, max on focus) */
-  --uc-urlbar-min-width: 35vw;
-  --uc-urlbar-max-width: 50vw;
+  /* URL Bar width (min applied normally, max on focus). The px ceiling caps
+     growth on ultrawide/4K, where bare vw scales to absurd widths (issue #6).
+     Caps engage from ~1800px CSS-px viewport; below that the vw value wins. */
+  --uc-urlbar-min-width: min(35vw, 630px);
+  --uc-urlbar-max-width: min(50vw, 900px);
 
   /* URL Bar position (1 = tabs right, 3 = tabs left) */
   --uc-urlbar-position: 1;

@@ -24,8 +24,8 @@ All configuration lives in the `:root` block at the top of `userChrome.css`.
 | `--uc-status-panel-spacing` | `12px` | Statuspanel distance from window border (`0` = corner) |
 | `--uc-urlbar-background` | `var(--uc-color-base)` | URL bar background (`var(--uc-color-base)` = blends with toolbar, `var(--uc-color-surface)` = distinct) |
 | `--uc-urlbar-rounded` | `0` | Rounded corners on URL bar and findbar (`1` = rounded, `0` = square) |
-| `--uc-urlbar-min-width` | `35vw` | URL bar default width |
-| `--uc-urlbar-max-width` | `50vw` | URL bar width on focus |
+| `--uc-urlbar-min-width` | `min(35vw, 630px)` | URL bar default width (px ceiling caps growth on ultrawide/4K) |
+| `--uc-urlbar-max-width` | `min(50vw, 900px)` | URL bar width on focus (px ceiling caps growth on ultrawide/4K) |
 | `--uc-urlbar-position` | `1` | URL bar position (`1` = tabs right, `3` = tabs left) |
 | `--uc-urlbar-top-spacing` | `1px` | Vertical URL bar spacing adjustment |
 | `--uc-toolbar-position` | `4` | Bookmarks bar position (`0` = top, `4` = bottom) |
