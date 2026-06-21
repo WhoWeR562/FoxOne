@@ -1026,12 +1026,13 @@ browser[type="content"],
   margin-inline-start: 2px !important;
 }
 
-/* Hide unwanted page action icons — reveal on hover/focus */
+/* Hide unwanted page action icons — reveal on hover/focus.
+   .urlbar-addon-page-action covers every extension-injected URL-bar icon
+   (Firefox assigns that class to all of them), so no per-add-on ID list. */
 #reader-mode-button,
 #taskbar-tabs-button,
 #translations-button,
-#pageAction-urlbar-_testpilot-containers,
-#pageAction-urlbar-_e26226b8-5263-4b42-9789-504fde4443b3_ {
+.urlbar-addon-page-action {
   max-width: 0 !important;
   overflow: hidden !important;
   opacity: 0 !important;
@@ -1045,13 +1046,11 @@ browser[type="content"],
 #urlbar:hover #reader-mode-button,
 #urlbar:hover #taskbar-tabs-button,
 #urlbar:hover #translations-button,
-#urlbar:hover #pageAction-urlbar-_testpilot-containers,
-#urlbar:hover #pageAction-urlbar-_e26226b8-5263-4b42-9789-504fde4443b3_,
+#urlbar:hover .urlbar-addon-page-action,
 #urlbar[focused="true"] #reader-mode-button,
 #urlbar[focused="true"] #taskbar-tabs-button,
 #urlbar[focused="true"] #translations-button,
-#urlbar[focused="true"] #pageAction-urlbar-_testpilot-containers,
-#urlbar[focused="true"] #pageAction-urlbar-_e26226b8-5263-4b42-9789-504fde4443b3_ {
+#urlbar[focused="true"] .urlbar-addon-page-action {
   max-width: 30px !important;
   opacity: 1 !important;
   pointer-events: auto !important;
